@@ -560,24 +560,24 @@
         grid-template-columns: 1fr;
       }
 
-      /* Contact: 2-col grid on mobile */
+      /* Contact: single column stacked on mobile */
       .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
 
-      /* Contact cards centred layout on mobile */
+      /* Contact cards horizontal row layout on mobile */
       .contact-card {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        text-align: center;
-        gap: 8px;
-        padding: 16px 12px;
+        gap: 14px;
+        padding: 14px 18px;
+        text-align: left;
       }
       .contact-icon-wrap {
         margin-bottom: 0;
-        justify-content: center;
+        flex-shrink: 0;
       }
       .logo-scroll-section {
         padding: 16px 0 14px;
