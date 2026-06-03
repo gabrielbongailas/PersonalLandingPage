@@ -132,9 +132,10 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 44px;
-      align-items: end;
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-items: start;
+      max-width: 720px;
     }
     .eyebrow {
       display: inline-flex;
@@ -497,8 +498,8 @@
       /* Hero */
       .hero {
         min-height: auto;
-        padding-top: 72px;
-        padding-bottom: 48px;
+        padding-top: 80px;
+        padding-bottom: 20px;
       }
       .hero h1 {
         font-size: clamp(2.0rem, 9vw, 3.2rem);
@@ -578,6 +579,12 @@
         margin-bottom: 0;
         justify-content: center;
       }
+      .logo-scroll-section {
+        padding: 16px 0 14px;
+      }
+      .logo-item { width: 52px; }
+      .logo-img  { width: 28px !important; height: 28px !important; }
+      .logo-name { font-size: 0.62rem; }
     }
 
     /* ── Very small screens (≤380px) ─────────────────────────── */
@@ -824,27 +831,18 @@
           </div>
           <h1>Professional systems work, <span class="accent">quietly presented</span>.</h1>
           <p>
-            I am Gabriel Bongailas, a Computer Systems &amp; Networks student working across IT governance, cybersecurity, infrastructure support, Linux systems, and applied networking. This portfolio highlights practical work experience, current projects, and the engineering mindset behind them.
+            Computer Systems &amp; Networks graduate (MCAST, Nov 2026) working in IT governance and operational cybersecurity at MFSA — with hands-on focus on infrastructure, Linux systems, networking, and self-hosted services.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Contact me</a>
             <a class="btn btn-secondary" href="#projects">View projects</a>
-            <a class="btn btn-secondary" href="Gabriel-Bongailas-CV.pdf" download>Download CV</a>
           </div>
           <div class="hero-meta">
             <span>Birkirkara, Malta</span>
             <span>Open to technical and professional opportunities</span>
           </div>
         </div>
-        <aside class="hero-card">
-          <h2 class="hero-card-title">Current focus</h2>
-          <ul>
-            <li>IT governance and operational cybersecurity at MFSA</li>
-            <li>LoRa-based sensing systems for dissertation work in Malta</li>
-            <li>Homelab virtualisation, storage, and segmented network design</li>
-            <li>Minimal, maintainable systems with clear operational visibility</li>
-          </ul>
-        </aside>
+
       </div>
     </section>
 
