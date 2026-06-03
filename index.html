@@ -596,6 +596,159 @@
       display: flex; align-items: center; gap: 14px; margin-bottom: 12px;
     }
     .contact-icon-wrap svg { width: 24px; height: 24px; }
+
+    /* ── Logo scroll marquee ─────────────────────────────────── */
+    .logo-scroll-section {
+      padding: 36px 0 32px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .logo-scroll-header { margin-bottom: 20px; }
+    .logo-track-wrapper {
+      overflow: visible;
+      padding-top: 12px;
+      padding-bottom: 6px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .logo-track {
+      display: flex;
+      gap: 36px;
+      width: max-content;
+      animation: marquee-scroll 40s linear infinite;
+    }
+    .logo-track:hover { animation-play-state: paused; }
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      width: 72px;
+      cursor: default;
+      transition: transform 200ms ease;
+    }
+    .logo-item:hover { transform: translateY(-6px); }
+    .logo-img {
+      width: 36px !important;
+      height: 36px !important;
+      object-fit: contain;
+      transition: filter var(--transition), opacity var(--transition);
+      opacity: 0.78;
+      display: block;
+    }
+    .logo-item:hover .logo-img { opacity: 1; }
+    [data-theme="light"] .logo-img     { filter: none; }
+    [data-theme="dark"]  .logo-img     { filter: invert(1) hue-rotate(180deg) brightness(1.1); }
+    [data-theme="dark"]  .logo-img-raw { filter: none; }
+    .logo-img-raw { opacity: 0.88; }
+    .logo-name {
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: center;
+    }
+    @media (max-width: 640px) {
+      .logo-track { gap: 24px; }
+      .logo-item  { width: 60px; }
+      .logo-img   { width: 30px !important; height: 30px !important; }
+      .logo-name  { font-size: 0.65rem; }
+    }
+
+    /* ── Experience tool logos ───────────────────────────────── */
+    .exp-tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 10px 8px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      width: 100%;
+    }
+    .exp-logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 5px;
+      padding: 8px 4px 6px;
+      border-radius: 10px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .exp-logo-item:hover {
+      background: var(--bg-subtle, rgba(0,0,0,0.04));
+      transform: translateY(-2px);
+    }
+    .exp-logo-img {
+      width: 26px !important; height: 26px !important;
+      object-fit: contain;
+      opacity: 0.75;
+      flex-shrink: 0;
+      transition: opacity var(--transition), filter var(--transition);
+    }
+    .exp-logo-item:hover .exp-logo-img { opacity: 1; }
+    [data-theme="dark"] .exp-logo-img {
+      filter: invert(1) hue-rotate(180deg) brightness(1.1);
+    }
+    [data-theme="dark"] .logo-img-raw { filter: none; }
+    .logo-img-raw { opacity: 0.85; }
+    .exp-logo-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-align: center;
+      word-break: break-word;
+      white-space: normal;
+      line-height: 1.3;
+      max-width: 58px;
+    }
+    .exp-logo-pill { grid-column: auto; }
+    .exp-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 26px;
+      padding: 0 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: transparent;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .exp-logo-pill { justify-content: center; }
+    .exp-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: var(--bg-subtle, var(--paper));
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .course-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: var(--teal);
+      text-decoration: none;
+      transition: color var(--transition), gap var(--transition);
+    }
+    .course-link:hover { color: var(--terracotta); gap: 6px; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -606,6 +759,7 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -641,6 +795,7 @@
     <a href="#experience" onclick="closeDrawer()">Experience</a>
     <a href="#projects" onclick="closeDrawer()">Projects</a>
     <a href="#skills" onclick="closeDrawer()">Skills</a>
+    <a href="#education" onclick="closeDrawer()">Education</a>
     <a href="#contact" onclick="closeDrawer()">Contact</a>
   </div>
 
@@ -678,15 +833,187 @@
       </div>
     </section>
 
+<!-- LOGO SCROLL -->
+  <section id="stack" class="logo-scroll-section" aria-label="Technology stack">
+    <div class="logo-scroll-header">
+      <span class="section-kicker" style="text-align:center;display:block;">Technology Stack</span>
+    </div>
+    <div class="logo-track-wrapper" aria-hidden="true">
+            <div class="logo-track">
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/linux/E8A800" alt="Linux" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Linux</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/ubuntu" alt="Ubuntu" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Ubuntu</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/kalilinux" alt="Kali Linux" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Kali Linux</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/pfsense" alt="pfSense" width="36" height="36" loading="lazy" />
+          <span class="logo-name">pfSense</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/git" alt="Git" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Git</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/burpsuite" alt="Burp Suite" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Burp Suite</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/truenas" alt="TrueNAS" width="36" height="36" loading="lazy" />
+          <span class="logo-name">TrueNAS</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Kubernetes</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/googlecloud" alt="Google Cloud" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Google Cloud</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/dell" alt="Dell" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Dell</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/arduino" alt="Arduino" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Arduino</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/espressif" alt="ESP32" width="36" height="36" loading="lazy" />
+          <span class="logo-name">ESP32</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F9d%2FWebmin_Logo.svg%2F1280px-Webmin_Logo.svg.png&f=1&nofb=1&ipt=f848e10c4536c51d3e27b2ca665c427fd66cd190600b409011771ccc49a0fc7d" alt="Webmin" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Webmin</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/cisco" alt="Cisco" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Cisco</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fne6ukkej06t71.png&f=1&nofb=1&ipt=ebfec03d5f0a608f1ae077a8152644d5ae58a0c487817909ed291ac41dda0270" alt="Windows" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Windows</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/1c4a5a016c9667b5.png" alt="Microsoft 365" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Microsoft 365</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/265e1e436e9fe464.png" alt="Intune" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Intune</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcompanieslogo.com%2Fimg%2Forig%2FDARK.L-50ef857a.png%3Fdownload%3Dtrue&f=1&nofb=1&ipt=e4cc2fe62032f67c5be33cab0bc604e288b0d1ac880e82b6429d5f7d8ccf9f9d" alt="Darktrace" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Darktrace</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fvmware-png-logo%2Fvmware-administration-essentials-including-admin-png-logo--15.png&f=1&nofb=1&ipt=f6d8d474b0d9f52c3bd563667492da3931bcf8daedea8e1619f22da78d25a559" alt="VMware" width="36" height="36" loading="lazy" />
+          <span class="logo-name">VMware</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdownload.logo.wine%2Flogo%2F3CX%2F3CX-Logo.wine.png&f=1&nofb=1&ipt=57cf2b1f7b411486c8405bea1808a2d711c54e541fd56972f3d6078c32f3bdc7" alt="3CX" width="36" height="36" loading="lazy" />
+          <span class="logo-name">3CX</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/linux/E8A800" alt="Linux" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Linux</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/ubuntu" alt="Ubuntu" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Ubuntu</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/kalilinux" alt="Kali Linux" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Kali Linux</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/pfsense" alt="pfSense" width="36" height="36" loading="lazy" />
+          <span class="logo-name">pfSense</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/git" alt="Git" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Git</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/burpsuite" alt="Burp Suite" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Burp Suite</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/truenas" alt="TrueNAS" width="36" height="36" loading="lazy" />
+          <span class="logo-name">TrueNAS</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Kubernetes</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/googlecloud" alt="Google Cloud" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Google Cloud</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/dell" alt="Dell" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Dell</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/arduino" alt="Arduino" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Arduino</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/espressif" alt="ESP32" width="36" height="36" loading="lazy" />
+          <span class="logo-name">ESP32</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F9d%2FWebmin_Logo.svg%2F1280px-Webmin_Logo.svg.png&f=1&nofb=1&ipt=f848e10c4536c51d3e27b2ca665c427fd66cd190600b409011771ccc49a0fc7d" alt="Webmin" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Webmin</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img" src="https://cdn.simpleicons.org/cisco" alt="Cisco" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Cisco</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fne6ukkej06t71.png&f=1&nofb=1&ipt=ebfec03d5f0a608f1ae077a8152644d5ae58a0c487817909ed291ac41dda0270" alt="Windows" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Windows</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/1c4a5a016c9667b5.png" alt="Microsoft 365" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Microsoft 365</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/265e1e436e9fe464.png" alt="Intune" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Intune</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcompanieslogo.com%2Fimg%2Forig%2FDARK.L-50ef857a.png%3Fdownload%3Dtrue&f=1&nofb=1&ipt=e4cc2fe62032f67c5be33cab0bc604e288b0d1ac880e82b6429d5f7d8ccf9f9d" alt="Darktrace" width="36" height="36" loading="lazy" />
+          <span class="logo-name">Darktrace</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fvmware-png-logo%2Fvmware-administration-essentials-including-admin-png-logo--15.png&f=1&nofb=1&ipt=f6d8d474b0d9f52c3bd563667492da3931bcf8daedea8e1619f22da78d25a559" alt="VMware" width="36" height="36" loading="lazy" />
+          <span class="logo-name">VMware</span>
+        </div>
+        <div class="logo-item">
+          <img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdownload.logo.wine%2Flogo%2F3CX%2F3CX-Logo.wine.png&f=1&nofb=1&ipt=57cf2b1f7b411486c8405bea1808a2d711c54e541fd56972f3d6078c32f3bdc7" alt="3CX" width="36" height="36" loading="lazy" />
+          <span class="logo-name">3CX</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
     <section id="experience">
       <div class="container">
         <div class="section-kicker">Career</div>
         <h2 class="section-title">Work Experience</h2>
         <p class="section-intro">
-          The experience section is now rewritten into portfolio-grade language rather than CV shorthand. The structure keeps each role readable while still showing operational depth.
+          A track record across government, private sector, and academic environments — spanning IT governance, cybersecurity operations, infrastructure support, and systems administration.
         </p>
 
         <div class="experience-list">
+
           <article class="experience-item">
             <div class="experience-top">
               <div>
@@ -696,13 +1023,22 @@
               <div class="experience-period">15/09/2025 – Present</div>
             </div>
             <ul class="experience-bullets">
-              <li>Performed website vulnerability testing and exposure reviews using UpGuard, ImmuniWeb, OpenVAS, and Nmap.</li>
+              <li>Performed website vulnerability testing and exposure reviews using OpenVAS, Nmap, and Burp Suite.</li>
               <li>Investigated reported phishing emails and links, validated malicious indicators, and coordinated blocking of related domains, senders, and URLs.</li>
               <li>Supported regular security assessments and audit activities aligned with internal and industry compliance requirements.</li>
               <li>Used Darktrace for network monitoring, behavioural visibility, and anomaly detection.</li>
               <li>Contributed to policy and guideline drafting for internal IT processes and governance controls.</li>
               <li>Built custom Linux-based security lab setups, including rogue access point simulation through pfSense for controlled testing.</li>
             </ul>
+            <div class="exp-tools">
+              <div class="exp-logo-item" title="Kali Linux"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/kalilinux" alt="Kali Linux" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Kali Linux</span></div>
+              <div class="exp-logo-item" title="Burp Suite"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/burpsuite" alt="Burp Suite" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Burp Suite</span></div>
+              <div class="exp-logo-item" title="Darktrace"><img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcompanieslogo.com%2Fimg%2Forig%2FDARK.L-50ef857a.png%3Fdownload%3Dtrue&f=1&nofb=1&ipt=e4cc2fe62032f67c5be33cab0bc604e288b0d1ac880e82b6429d5f7d8ccf9f9d" alt="Darktrace" width="22" height="22" loading="lazy" /><span class="exp-logo-label">Darktrace</span></div>
+              <div class="exp-logo-item" title="Linux"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/linux/E8A800" alt="Linux" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Linux</span></div>
+              <div class="exp-logo-item" title="pfSense"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/pfsense" alt="pfSense" width="26" height="26" loading="lazy" /><span class="exp-logo-label">pfSense</span></div>
+            </div>
+          
+          
           </article>
 
           <article class="experience-item">
@@ -719,12 +1055,25 @@
               <li>Provisioned and managed Android devices using Microsoft Intune.</li>
               <li>Configured and maintained 4G routers, including Sputnik24 and Teltonika platforms.</li>
               <li>Deployed and supported Zebra and NCR cash point systems for production use.</li>
+              <li>Configured Extreme Networks access points and Aruba and Dell switching infrastructure.</li>
+              <li>Managed 3CX VoIP telephony platform for business communications.</li>
               <li>Developed PowerShell automation for recurring operational tasks.</li>
               <li>Performed Linux administration and Bash scripting for maintenance and deployments.</li>
               <li>Handled electronics repair work and 3D printing design for internal hardware needs.</li>
-              <li>Completed network cable termination, routing, and physical equipment setup.</li>
               <li>Built and managed a custom Linux infotainment system administered through Webmin.</li>
             </ul>
+            <div class="exp-tools">
+              <div class="exp-logo-item" title="Microsoft 365"><img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/1c4a5a016c9667b5.png" alt="Microsoft 365" width="22" height="22" loading="lazy" /><span class="exp-logo-label">Microsoft 365</span></div>
+              <div class="exp-logo-item" title="Intune"><img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/265e1e436e9fe464.png" alt="Intune" width="22" height="22" loading="lazy" /><span class="exp-logo-label">Intune</span></div>
+              <div class="exp-logo-item" title="Ubuntu Server"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/ubuntu" alt="Ubuntu Server" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Ubuntu Server</span></div>
+              <div class="exp-logo-item" title="Webmin"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F9d%2FWebmin_Logo.svg%2F1280px-Webmin_Logo.svg.png&f=1&nofb=1&ipt=f848e10c4536c51d3e27b2ca665c427fd66cd190600b409011771ccc49a0fc7d" alt="Webmin" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Webmin</span></div>
+              <div class="exp-logo-item" title="Dell"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/dell" alt="Dell" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Dell</span></div>
+              <div class="exp-logo-item" title="VMware"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fvmware-png-logo%2Fvmware-administration-essentials-including-admin-png-logo--15.png&f=1&nofb=1&ipt=f6d8d474b0d9f52c3bd563667492da3931bcf8daedea8e1619f22da78d25a559" alt="VMware" width="26" class="logo-img logo-img-raw" height="26" loading="lazy" /><span class="exp-logo-label">VMware</span></div>
+              
+              <div class="exp-logo-item" title="3CX"><img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdownload.logo.wine%2Flogo%2F3CX%2F3CX-Logo.wine.png&f=1&nofb=1&ipt=57cf2b1f7b411486c8405bea1808a2d711c54e541fd56972f3d6078c32f3bdc7" alt="3CX" width="22" height="22" loading="lazy" /><span class="exp-logo-label">3CX</span></div>
+            </div>
+          
+          
           </article>
 
           <article class="experience-item">
@@ -743,22 +1092,28 @@
               <li>Provided day-to-day technical support and troubleshooting for staff.</li>
               <li>Introduced open-source tools to streamline internal workflows within budget constraints.</li>
             </ul>
+            <div class="exp-tools">
+              <div class="exp-logo-item" title="Windows"><img class="logo-img logo-img-raw" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fne6ukkej06t71.png&f=1&nofb=1&ipt=ebfec03d5f0a608f1ae077a8152644d5ae58a0c487817909ed291ac41dda0270" alt="Windows" width="22" height="22" loading="lazy" /><span class="exp-logo-label">Windows</span></div>
+              <div class="exp-logo-item" title="Microsoft 365"><img class="logo-img logo-img-raw" src="https://duckduckgo.com/i/1c4a5a016c9667b5.png" alt="Microsoft 365" width="22" height="22" loading="lazy" /><span class="exp-logo-label">Microsoft 365</span></div>
+            </div>
+          
+          
           </article>
+
         </div>
       </div>
     </section>
-
-    <section id="projects">
+<section id="projects">
       <div class="container">
         <div class="section-kicker">Selected work</div>
         <h2 class="section-title">Projects</h2>
         <p class="section-intro">
-          The palette and typography now move away from the earlier Apple-like styling toward a more Mediterranean and institutional visual language: calmer colours, serif authority, softer contrast, and warmer surfaces.
+          A selection of personal and academic projects covering embedded systems, infrastructure design, and self-hosted services.
         </p>
         <div class="projects-grid">
           <article class="card">
             <span class="project-status status-active">Active dissertation</span>
-            <h3>LoRa Agricultural &amp; Noise Monitor</h3>
+            <h3>LoRa-enabled Low-Cost Noise Pollution Monitoring System</h3>
             <p>Standalone LoRa-based sensing system for agricultural and environmental monitoring in Malta, designed for resilience, autonomy, and low-dependency deployment.</p>
             <div class="pill-row">
               <span class="pill">LoRa</span>
@@ -770,12 +1125,15 @@
           <article class="card">
             <span class="project-status status-ongoing">Ongoing</span>
             <h3>Proxmox Homelab</h3>
-            <p>Segmented virtualisation environment for service testing, storage, Linux administration, and practical network design with emphasis on observability and isolation.</p>
+            <p>Segmented virtualisation environment being set up to self-host services including Immich, Jellyfin, Navidrome, Home Assistant, and other open-source software — with emphasis on storage management, network isolation via VLANs, and practical Linux administration.</p>
             <div class="pill-row">
               <span class="pill">Proxmox</span>
               <span class="pill">TrueNAS</span>
               <span class="pill">VLANs</span>
-              <span class="pill">Self-hosting</span>
+              <span class="pill">Immich</span>
+              <span class="pill">Jellyfin</span>
+              <span class="pill">Navidrome</span>
+              <span class="pill">Home Assistant</span>
             </div>
           </article>
           <article class="card">
@@ -789,16 +1147,7 @@
               <span class="pill">Systems design</span>
             </div>
           </article>
-          <article class="card">
-            <span class="project-status status-live">Live</span>
-            <h3>Portfolio Website</h3>
-            <p>A minimalist professional site with warmer Mediterranean visual identity, calmer spacing, authority-oriented serif headings, and maintainable static structure.</p>
-            <div class="pill-row">
-              <span class="pill">Static site</span>
-              <span class="pill">GitHub Pages</span>
-              <span class="pill">HTML/CSS</span>
-            </div>
-          </article>
+          
         </div>
       </div>
     </section>
@@ -850,6 +1199,75 @@
             <h3>IoT &amp; Microelectronics</h3>
             <p>LoRa and LoRaWAN sensor design, ESP32-C3 firmware, RF systems, electronics repair, and 3D printing for custom hardware solutions.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-kicker">Academic</div>
+        <h2 class="section-title">Education</h2>
+
+        <div class="experience-list">
+
+          <article class="experience-item">
+            <div class="experience-top">
+              <div>
+                <h3 class="experience-role">Bachelor of Science (Honours)</h3>
+                <div class="experience-company">Computer Systems &amp; Networks · MQF Level 6 · MCAST</div>
+                <a class="course-link" href="https://mcast.edu.mt/prospectus-2025-26/it6-a01-23/" target="_blank" rel="noreferrer">View course prospectus ↗</a>
+              </div>
+              <div class="experience-period">2023 – June 2026</div>
+            </div>
+            <ul class="experience-bullets">
+              <li>180-credit undergraduate degree covering enterprise networking, data centre operations, information security, virtualisation, DevOps, and cloud computing.</li>
+              <li>Hands-on exposure to service provider networks, software-defined networking, and emerging infrastructure technologies.</li>
+              <li>Dissertation: Standalone LoRa-based agricultural and environmental noise monitoring system designed for deployment in Malta.</li>
+              <li>Programme Code: IT6-A01-23 · Accredited Work Based Learning via Apprenticeship scheme.</li>
+            </ul>
+            <div class="exp-tools">
+              <div class="exp-logo-item" title="Windows Server"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fne6ukkej06t71.png&f=1&nofb=1&ipt=ebfec03d5f0a608f1ae077a8152644d5ae58a0c487817909ed291ac41dda0270" alt="Windows Server" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Windows Server</span></div>
+              <div class="exp-logo-item" title="Microsoft"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fmicrosoft-office-png-logo%2Fmicrosoft-logo-icon-png-transparent-19.png&f=1&nofb=1&ipt=02c6d61c51d7d2222ba23d61013aef78b071c50973e6629ede5f53ffb114f0d9" alt="Microsoft" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Microsoft</span></div>
+              <div class="exp-logo-item" title="Ubuntu Server"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/ubuntu" alt="Ubuntu Server" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Ubuntu Server</span></div>
+              <div class="exp-logo-item" title="VMware"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fvmware-png-logo%2Fvmware-administration-essentials-including-admin-png-logo--15.png&f=1&nofb=1&ipt=f6d8d474b0d9f52c3bd563667492da3931bcf8daedea8e1619f22da78d25a559" alt="VMware" width="26" height="26" loading="lazy" /><span class="exp-logo-label">VMware</span></div>
+              <div class="exp-logo-item" title="Kubernetes"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Kubernetes</span></div>
+              <div class="exp-logo-item" title="Git"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/git" alt="Git" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Git</span></div>
+              <div class="exp-logo-item" title="Google Cloud"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/googlecloud" alt="Google Cloud" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Google Cloud</span></div>
+              <div class="exp-logo-item" title="Cisco"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/cisco" alt="Cisco" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Cisco</span></div>
+              <div class="exp-logo-item" title="ESP32"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/espressif" alt="ESP32" width="26" height="26" loading="lazy" /><span class="exp-logo-label">ESP32</span></div>
+            </div>
+          
+          </article>
+
+          <article class="experience-item">
+            <div class="experience-top">
+              <div>
+                <h3 class="experience-role">Advanced Diploma in IT</h3>
+                <div class="experience-company">Computer Systems &amp; Networks · MQF Level 4 · MCAST</div>
+                <a class="course-link" href="https://mcast.edu.mt/prospectus-2025-26/it4-a01-23/" target="_blank" rel="noreferrer">View course prospectus ↗</a>
+              </div>
+              <div class="experience-period">2021 – 2023</div>
+            </div>
+            <ul class="experience-bullets">
+              <li>120-credit two-year programme covering routing, switching, infrastructure design, and virtualisation for small to medium enterprise environments.</li>
+              <li>Broad first-year foundation across all IT streams followed by a specialised second year in network infrastructure and systems administration.</li>
+              <li>Database fundamentals and SQL using Microsoft SQL Server.</li>
+              <li>Work-based learning component delivered through apprenticeship scheme — applied skills in live infrastructure environments.</li>
+              <li>Programme Code: IT4-A01-23 · MQF Level 4.</li>
+            </ul>
+            <div class="exp-tools">
+              <div class="exp-logo-item" title="Windows"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fne6ukkej06t71.png&f=1&nofb=1&ipt=ebfec03d5f0a608f1ae077a8152644d5ae58a0c487817909ed291ac41dda0270" alt="Windows" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Windows</span></div>
+              <div class="exp-logo-item" title="Microsoft"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fmicrosoft-office-png-logo%2Fmicrosoft-logo-icon-png-transparent-19.png&f=1&nofb=1&ipt=02c6d61c51d7d2222ba23d61013aef78b071c50973e6629ede5f53ffb114f0d9" alt="Microsoft" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Microsoft</span></div>
+              <div class="exp-logo-item" title="Linux"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/linux" alt="Linux" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Linux</span></div>
+              <div class="exp-logo-item" title="VMware"><img class="logo-img logo-img-raw exp-logo-img" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepnglogos.com%2Fuploads%2Fvmware-png-logo%2Fvmware-administration-essentials-including-admin-png-logo--15.png&f=1&nofb=1&ipt=f6d8d474b0d9f52c3bd563667492da3931bcf8daedea8e1619f22da78d25a559" alt="VMware" width="26" height="26" loading="lazy" /><span class="exp-logo-label">VMware</span></div>
+              <div class="exp-logo-item" title="Cisco"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/cisco" alt="Cisco" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Cisco</span></div>
+              <div class="exp-logo-item" title="Git"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/git" alt="Git" width="26" height="26" loading="lazy" /><span class="exp-logo-label">Git</span></div>
+            
+              <div class="exp-logo-item" title="TrueNAS"><img class="logo-img exp-logo-img" src="https://cdn.simpleicons.org/truenas" alt="TrueNAS" width="26" height="26" loading="lazy" /><span class="exp-logo-label">TrueNAS</span></div>
+            </div>
+          
+          </article>
+
         </div>
       </div>
     </section>
