@@ -456,6 +456,11 @@
       border-bottom: 1px solid var(--line);
       padding: 12px 20px 18px;
       gap: 4px;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      z-index: 999;
     }
     .mobile-drawer.open { display: flex; }
     .mobile-drawer a {
@@ -496,10 +501,11 @@
         padding-bottom: 48px;
       }
       .hero h1 {
-        font-size: clamp(2.4rem, 11vw, 3.2rem);
-        line-height: 1.0;
-        word-break: break-word;
-        hyphens: auto;
+        font-size: clamp(2.0rem, 9vw, 3.2rem);
+        line-height: 1.05;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: none;
         margin-bottom: 18px;
       }
       .hero p {
@@ -530,7 +536,7 @@
 
       /* Sections */
       section { padding: 56px 0 40px; }
-      .section-title { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+      .section-title { font-size: clamp(1.6rem, 7vw, 2.4rem); word-break: normal; hyphens: none; overflow-wrap: break-word; }
 
       /* Cards */
       .experience-item,
@@ -549,20 +555,29 @@
 
       /* Skills single column */
       .skills-grid,
-      .projects-grid,
-      .contact-grid {
+      .projects-grid {
         grid-template-columns: 1fr;
       }
 
-      /* Contact cards horizontal layout on mobile */
+      /* Contact: 2-col grid on mobile */
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      /* Contact cards centred layout on mobile */
       .contact-card {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        gap: 16px;
-        padding: 16px 20px;
+        text-align: center;
+        gap: 8px;
+        padding: 16px 12px;
       }
-      .contact-icon-wrap { margin-bottom: 0; }
+      .contact-icon-wrap {
+        margin-bottom: 0;
+        justify-content: center;
+      }
     }
 
     /* ── Very small screens (≤380px) ─────────────────────────── */
